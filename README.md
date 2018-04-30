@@ -3,7 +3,8 @@ This application will connect you to all the best courses in the town.
 
 ## Development Tools
 - [Git](https://git-scm.com/) for versioning system.
-- [NodeJS](https://nodejs.org/en/) to run the application.
+- [Node.js](https://nodejs.org/en/) to run the application.
+- [Express.js](https://expressjs.com/) to build the API.
 - [Postman](https://www.getpostman.com/) to test the API.
 
 ## Author
