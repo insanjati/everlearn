@@ -13,6 +13,7 @@ const coursesRouter = require('./routes/courses');
 const forgetPasswordRouter = require('./routes/forget-password');
 
 app.use(morgan('combined'));
+app.use('/uploads', express.static('uploads'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // body-parser already included when you install express library
@@ -27,11 +28,11 @@ mongoose.connect('mongodb://localhost/everlearn')
 
 // define routes
 // app.set('routes', path.join(__dirname, 'routes'));
+app.use('/courses', coursesRouter);
 app.use('/register', regRoutes);
 app.use('/login', loginRoutes);
 app.use('/student', studentRoutes);
 app.use('/mentor', mentorRoutes);
-app.use('/courses', coursesRouter);
 app.use('/forget-password', forgetPasswordRouter);
 
 const port = process.env.PORT || 3000;

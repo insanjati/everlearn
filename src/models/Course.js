@@ -6,13 +6,15 @@ autoIncrement.initialize(mongoose.connection);
 
 // TODO: add host (mentor ID), kuota, durasi course, due date for registration
 var CourseSchema = new Schema({
-    courseName: { type: String },
-    mentor: { type: String },
-    price: { type: Number },
-    shortDesc: { type: String },
-    moreDesc: { type: String },
-    curriculum: { type: String },
-    location: { type: String },
+    mentor: { type: Schema.Types.Number, ref: 'Mentor', required: true },
+    productImage: { type: String, required: true },
+    courseName: { type: String, required: true },
+    mentorName: { type: String, required: true },
+    price: { type: Number, required: true },
+    shortDesc: { type: String, required: true },
+    moreDesc: { type: String, required: true },
+    curriculum: { type: String, required: true },
+    location: { type: String, required: true },
     rating: { type: Number },
     purchased: { type: Number }
 });

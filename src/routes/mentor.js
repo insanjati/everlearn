@@ -2,6 +2,33 @@ const express = require('express');
 const router = express.Router();
 const Mentor = require('../models/Mentor')
 const Course = require('../models/Course')
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, './uploads/');
+    },
+    filename: function(req, file, cb) {
+      cb(null, new Date().toISOString() + file.originalname);
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    // reject a file
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
+};
+
+const upload = multer({
+    storage: storage,
+    limits: {
+      fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+});
 
 router.get('/profile/:profileId', function(req, res, next) {
     const id = req.params.profileId;
@@ -91,14 +118,14 @@ router.delete('/courses/:courseId', function(req, res, next) {
             });
         })
         .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
-        });
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
         });
 });
 
-router.post('/courses/add', function(req, res, next) {
+router.post('/courses/add', upload.single('productImage'), function(req, res, next) {
     // const course = new Course(req.body);
     // Course.create(course, function(err, post){
     //     if(err) return next(err);

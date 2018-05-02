@@ -5,8 +5,8 @@ const autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(mongoose.connection);
 
 var MentorSchema = new Schema({
-    fullName: { type: String, default: '' },
-    email: { type: String, default: '' },
+    fullName: { type: String, default: '', required: true },
+    email: { type: String, default: '', required: true },
     phone: { type: Number, default: '' },
     birthDate: { type: Number, default: '' },
     province: { type: String, default: '' },
