@@ -5,8 +5,8 @@ const autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(mongoose.connection);
 
 var BookmarkSchema = new Schema({
-    student: { type: Schema.Types.Number, ref: 'Course', required: true },
-    course: { type: Schema.Types.Number, ref: 'Course', required: true },
+    student: { type: Schema.Types.Number, ref: 'Student', required: true },
+    course: { type: Schema.Types.Number, ref: 'Course', required: true }
 });
 
 BookmarkSchema.plugin(autoIncrement.plugin, 'Bookmark');
