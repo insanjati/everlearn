@@ -1,13 +1,14 @@
 <template>
   <v-app>
     <v-toolbar class="px-3 py-3">
-      <v-toolbar-side-icon></v-toolbar-side-icon>
+      <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
       <v-toolbar-title>
         <router-link 
           to="/" 
           tag="span" 
-          style="cursor: pointer">
-          EVERLEARN
+          style="cursor: pointer"
+          src="./assets/EVERLEARN.png">
+          <img src="@/assets/everlearn2.png" alt="everlearn" height="50px">
         </router-link>
       </v-toolbar-title>
       <v-layout row wrap>

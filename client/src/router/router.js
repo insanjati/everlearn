@@ -10,11 +10,17 @@ import AddCourse from '@/components/Course/AddCourse'
 import MentorProfile from '@/components/Mentor/Profile'
 import StudentProfile from '@/components/Student/Profile'
 import MentorsManage from '@/components/Admin/Mentors'
+import Coba from '@/components/Coba'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/coba',
+      name: 'Coba',
+      component: Coba
+    },
     {
       path: '/',
       name: 'Home',
