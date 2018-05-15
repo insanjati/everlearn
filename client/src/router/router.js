@@ -10,16 +10,16 @@ import AddCourse from '@/components/Course/AddCourse'
 import MentorProfile from '@/components/Mentor/Profile'
 import StudentProfile from '@/components/Student/Profile'
 import MentorsManage from '@/components/Admin/Mentors'
-import Coba from '@/components/Coba'
+import Posts from '@/components/Posts'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/coba',
-      name: 'Coba',
-      component: Coba
+      path: '/posts',
+      name: 'Posts',
+      component: Posts
     },
     {
       path: '/',

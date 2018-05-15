@@ -1,7 +1,8 @@
 const express = require('express');
+const cors = require('cors');
 const morgan = require('morgan');
 const { sequelize } = require('./models');
-const config = require(__dirname + '/config/default.json');
+const config = require('./config/default.json');
 // const path = require('path');
 
 const coursesRouter = require('./routes/courses');
@@ -17,6 +18,7 @@ app.use(morgan('combined'));
 app.use('/uploads', express.static('uploads'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors());
 
 app.use('/courses', coursesRouter);
 app.use('/register', regRoutes);
@@ -25,6 +27,14 @@ app.use('/login', loginRoutes);
 // app.use('/admin', adminRoutes);
 app.use('/student', studentRoutes);
 app.use('/mentor', mentorRoutes);
+app.get('/posts', (req, res) => {
+  res.send(
+    [{
+      title: "Hello World!",
+      description: "Hi there! How are you?"
+    }]
+  )
+})
 
 // const PORT = process.env.PORT || 8000;
 // app.listen(PORT, function(){

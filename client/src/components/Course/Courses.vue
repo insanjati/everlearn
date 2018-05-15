@@ -4,7 +4,7 @@
     row
     wrap
     mb-4
-    v-for="course in courses"
+    v-for="course in courses.courses"
     :key="course.id">
       <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
         <v-card class="grey lighten-1">
@@ -12,16 +12,16 @@
             <v-layout row>
               <v-flex xs5 sm4 md3>
                 <v-card-media
-                  :src="course.imageUrl"
+                  src= "https://guitarlessons-com-public.s3.amazonaws.com/images/5f55b84-2-how-to-hold-the-guitar.jpg"
                   height="168px">
                 </v-card-media>
               </v-flex>
               <v-flex xs7 sm8 md9 ml-3>
                 <v-card-title primary-title>
                   <div>
-                    <h1 class="white--text">{{ course.title }}</h1>
+                    <h1 class="white--text">{{ course.courseName }}</h1>
                     <div>Rp {{ course.price }}</div>
-                    <div>{{ course.date }}</div>
+                    <div>{{ course.description }}</div>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -40,11 +40,26 @@
 </template>
 
 <script>
-export default {
-  computed: {
-    courses () {
-      return this.$store.getters.loadedCourses
+  import CourseService from '@/services/CourseService'
+
+  export default {
+    data () {
+      return {
+        courses: []
+      }
+    },
+    mounted () {
+      this.getCourses()
+    },
+    methods: {
+      async getCourses () {
+        try {
+          const response = await CourseService.getAllCourses()
+          this.courses = response.data
+        } catch (err) {
+          console.log(err)
+        }
+      }
     }
   }
-}
 </script>

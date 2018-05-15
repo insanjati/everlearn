@@ -4,15 +4,15 @@
       <v-flex xs12>
         <v-card>
           <v-card-title>
-            <h1 class="primary--text">{{ course.title }}</h1>
+            <h1 class="primary--text">{{ course.course.courseName }}</h1>
           </v-card-title>
           <v-card-media
             :src="course.imageUrl"
             height="400px"
           ></v-card-media>
           <v-card-text>
-            <div class="info--text">{{ course.price }}</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci assumenda at deserunt dolorum eius esse eum, expedita hic illo ipsum magni, nobis, odio odit quaerat quibusdam quis rem veritatis voluptas!</div>
+            <div class="info--text">{{ course.course.price }}</div>
+            <div>{{ course.course.description }}</div>
           </v-card-text>
           <v-card-actions>
             <!-- <v-spacer></v-spacer> -->
@@ -25,12 +25,25 @@
 </template>
 
 <script>
+  import CourseService from '@/services/CourseService'
+
   export default {
-    props: ['id'],
-    computed: {
-      course () {
-        // console.log(this.id)
-        return this.$store.getters.loadedCourse(this.id)
+    data () {
+      return {
+        course: []
+      }
+    },
+    mounted () {
+      this.getCourseById()
+    },
+    methods: {
+      async getCourseById () {
+        try {
+          const response = await CourseService.getCourseById(this.$route.params.id)
+          this.course = response.data
+        } catch (err) {
+          console.log(err)
+        }
       }
     }
   }

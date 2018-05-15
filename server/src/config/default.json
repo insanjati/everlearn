@@ -1,9 +1,9 @@
 {
   "host": "localhost",
-  "port": 8000,
+  "port": 8081,
   "uploads": "public/uploads",
   "authentication": {
-    "secret": "secret",
+    "secret": "secretlearner",
     "strategies": ["jwt", "local"],
     "path": "/authentication",
     "service": "users",
