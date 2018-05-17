@@ -9,7 +9,7 @@ const coursesRouter = require('./routes/courses');
 const regRoutes = require('./routes/register');
 const loginRoutes = require('./routes/login');
 // const forgetPasswordRouter = require('./routes/forget-password');
-// const adminRoutes = require('./routes/admin');
+const adminRoutes = require('./routes/admin');
 const studentRoutes = require('./routes/student');
 const mentorRoutes = require('./routes/mentor');
 
@@ -24,17 +24,9 @@ app.use('/courses', coursesRouter);
 app.use('/register', regRoutes);
 app.use('/login', loginRoutes);
 // app.use('/forget-password', forgetPasswordRouter);
-// app.use('/admin', adminRoutes);
+app.use('/admin', adminRoutes);
 app.use('/student', studentRoutes);
 app.use('/mentor', mentorRoutes);
-app.get('/posts', (req, res) => {
-  res.send(
-    [{
-      title: "Hello World!",
-      description: "Hi there! How are you?"
-    }]
-  )
-})
 
 // const PORT = process.env.PORT || 8000;
 // app.listen(PORT, function(){

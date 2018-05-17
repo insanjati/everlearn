@@ -1,17 +1,20 @@
 const { 
   students: Student,
-  mentors: Mentor
+  mentors: Mentor,
+  admin: Admin
 } = require('../models');
 const config = require('../config/default.json');
+const { JWT_SECRET } = require('../config');
 const JWT = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-signToken = user => {
+signToken = (user) => {
   return JWT.sign({
     iss: 'Everlearn',
+    sub: user.id,
     iat: new Date().getTime(),
     exp: new Date().setDate(new Date().getDate() + 3)
-  }, config.authentication.secret)
+  }, JWT_SECRET);
 }
 
 module.exports = {
@@ -25,10 +28,18 @@ module.exports = {
           message: 'Email already in used, please use another one'
         })
       }
-      bcrypt.hash(password, 10, (err, result) => {
-        student = Student.create({ email: email, password: result });
+      await bcrypt.hash(password, 10, (err, result) => {
+        if (err) {
+          return res.status(401).json({
+            message: "Auth failed"
+          });
+        }
+        // const token = signToken(mentor);
+        mentor = Mentor.create({ email: email, password: result });
+        // console.log(mentor);
         return res.status(201).json({
-          message: 'Student profile created successfully',
+          message: 'Mentor profile created successfully',
+          // token: token,
           request: {
             type: 'GET',
             url: 'http://localhost:8081/login'
@@ -62,10 +73,18 @@ module.exports = {
           message: 'Email already in used, please use another one'
         })
       }
-      bcrypt.hash(password, 10, (err, result) => {
+      await bcrypt.hash(password, 10, (err, result) => {
+        if (err) {
+          return res.status(401).json({
+            message: "Auth failed"
+          });
+        }
+        // const token = signToken(mentor);
         student = Student.create({ email: email, password: result });
+        console.log(student);
         return res.status(201).json({
           message: 'Student profile created successfully',
+          // token: token,
           request: {
             type: 'GET',
             url: 'http://localhost:8081/login'
@@ -106,9 +125,11 @@ module.exports = {
           });
         }
         if (result) {
+          const token = signToken(mentor);
+          console.log(token);
           return res.status(200).json({
-            message: 'Authentication successfull, welcome again!'
-            // token: token
+            message: 'Authentication successfull, welcome again!',
+            token: token
           });
         }
         res.status(401).json({
@@ -130,14 +151,22 @@ module.exports = {
           message: "Authentication failed, please check your login information"
         });
       }
-      if (bcrypt.compareSync(password, student.password)) {
-        return res.status(200).json({
-          message: 'Authentication successfull, welcome again!',
-          student,
-          request: {
-            type: 'GET',
-            url: 'http://localhost:8081/student/' + student.id + '/profile'
-          }
+      bcrypt.compare(password, student.password), (err, result) => {
+        if (err) {
+          return res.status(401).json({
+            message: 'Authentication failed, please check your login information'
+          });
+        }
+        if (result) {
+          const token = signToken(student);
+          console.log(token);
+          return res.status(200).json({
+            message: 'Authentication successfull, welcome again!',
+            token: token
+          });
+        }
+        res.status(401).json({
+          message: 'Authentication failed, please check your login information'
         });
       }
     } catch (err) {
@@ -146,4 +175,68 @@ module.exports = {
       });
     }
   },
+  // ADMIN AUTH
+  // sync regAdmin (req, res) {
+  //   let { email, password } = req.body;
+  //   try {
+  //     let admin = await Admin.findOne({ where: { email: email } })
+  //     if (admin) {
+  //       return res.status(409).json({
+  //         message: 'Email already in used, please use another one'
+  //       })
+  //     }
+  //     await bcrypt.hash(password, 10, (err, result) => {
+  //       if (err) {
+  //         return res.status(401).json({
+  //           message: "Auth failed"
+  //         });
+  //       }
+  //       admin = Admin.create({ email: email, password: result });
+  //       return res.status(201).json({
+  //         message: 'Admin profile created successfully',
+  //         request: {
+  //           type: 'GET',
+  //           url: 'http://localhost:8081/login'
+  //         }
+  //       });
+  //     });
+  //   } catch (err) {
+  //     return res.status(400).json({
+  //       error: err.message
+  //     });
+  //   }
+  // }
+  async logInAdmin (req, res) {
+    let { email, password } = req.body;
+    try {
+      const admin = await Admin.findOne({ where: { email: email } });
+      if (!admin) {
+        return res.status(401).json({
+          message: "Authentication failed, please check your login information"
+        });
+      }
+      bcrypt.compare(password, admin.password), (err, result) => {
+        if (err) {
+          return res.status(401).json({
+            message: 'Authentication failed, please check your login information'
+          });
+        }
+        if (result) {
+          const token = signToken(admin);
+          console.log(token);
+          return res.status(200).json({
+            message: 'Authentication successfull, welcome again!',
+            token: token
+          });
+        }
+        res.status(401).json({
+          message: 'Authentication failed, please check your login information'
+        });
+      }
+    } catch (err) {
+      return res.status(400).json({
+        error: err.message
+      });
+    }
+  }
 }

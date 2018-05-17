@@ -31,7 +31,7 @@ module.exports = {
     try {
       const course = await Course.findOne({ 
         where: { 
-          id: courseId,
+          id: courseId
         } 
       });
       if (!course) {
