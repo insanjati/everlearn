@@ -158,6 +158,7 @@ module.exports = {
           });
         }
         if (result) {
+          console.log(result);
           const token = signToken(student);
           console.log(token);
           return res.status(200).json({

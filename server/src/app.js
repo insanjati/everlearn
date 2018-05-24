@@ -10,8 +10,8 @@ const regRoutes = require('./routes/register');
 const loginRoutes = require('./routes/login');
 // const forgetPasswordRouter = require('./routes/forget-password');
 const adminRoutes = require('./routes/admin');
-const studentRoutes = require('./routes/student');
 const mentorRoutes = require('./routes/mentor');
+const studentRoutes = require('./routes/student');
 
 const app = express();
 app.use(morgan('combined'));
@@ -25,8 +25,8 @@ app.use('/register', regRoutes);
 app.use('/login', loginRoutes);
 // app.use('/forget-password', forgetPasswordRouter);
 app.use('/admin', adminRoutes);
-app.use('/student', studentRoutes);
 app.use('/mentor', mentorRoutes);
+app.use('/student', studentRoutes);
 
 // const PORT = process.env.PORT || 8000;
 // app.listen(PORT, function(){

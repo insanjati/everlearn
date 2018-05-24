@@ -207,10 +207,9 @@ module.exports = {
       }
       res.status(200).json({
         message: 'Course deleted successfully',
-        mentor,
         request: {
           type: 'GET',
-          url: 'http://localhost:8000/mentor/' + mentorId + '/course'
+          url: 'http://localhost:8000/mentor/' + mentorId + '/courses'
         }
       });
     } catch (err) {

@@ -1,0 +1,695 @@
+{
+	"info": {
+		"_postman_id": "9da05506-4af7-44a1-83d5-c4b93fb980c5",
+		"name": "EVERLEARN API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "COURSES",
+			"description": "",
+			"item": [
+				{
+					"name": "GET ALL COURSES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/courses",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET COURSE BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/courses/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"courses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ADMIN",
+			"description": "",
+			"item": [
+				{
+					"name": "LOGIN - TODO",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"insan@avengers.com\",\n\t\"password\": \"adminmu\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/admin",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET MENTORS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/admin/mentors",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"mentors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET STUDENTS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/admin/students",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"students"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MENTOR",
+			"description": "",
+			"item": [
+				{
+					"name": "REGISTER - NT",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "45cb1f18-97e6-4d21-b0e2-2db9d970bed4",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"blackwidow@avengers.com\",\n\t\"password\": \"gurumu\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/register/mentor",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"register",
+								"mentor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "45cb1f18-97e6-4d21-b0e2-2db9d970bed4",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"blackwidow@avengers.com\",\n\t\"password\": \"gurumu\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/login/mentor",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"login",
+								"mentor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET PROFILE - TODO",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/mentor/5/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"mentor",
+								"5",
+								"profile"
+							]
+						},
+						"description": "1. Resolve response when authentication not provided in header.\n2. Resolve 'BEARER' mode."
+					},
+					"response": []
+				},
+				{
+					"name": "EDIT PROFILE - TODO",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"phoneNumber\": \"081567567\",\n    \"dateOfBirth\": \"1985-12-05\",\n    \"about\": \"You don't know my real name\",\n    \"location\": \"Russia\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/mentor/5/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"mentor",
+								"5",
+								"profile"
+							]
+						},
+						"description": "Resolve respon when authentication not provided in header."
+					},
+					"response": []
+				},
+				{
+					"name": "POST COURSE - TODO",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"courseName\": \"Girls Power\",\n\t\"category\": \"Language\",\n\t\"price\": \"115500\",\n\t\"description\": \"Girls are often underestimated\",\n\t\"curriculum\": \"I'll teach you the very basic of self defense\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/mentor/5/courses",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"mentor",
+								"5",
+								"courses"
+							]
+						},
+						"description": "1. Masih bisa POST ke mentor dengan ID lain."
+					},
+					"response": []
+				},
+				{
+					"name": "GET COURSES - TODO",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/mentor/5/courses",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"mentor",
+								"5",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET COURSE BY ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/mentor/5/course/17",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"mentor",
+								"5",
+								"course",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EDIT COURSE",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"courseName\": \"Girls Power\",\n\t\"category\": \"Sport\",\n\t\"price\": \"115500\",\n\t\"description\": \"Girls are often underestimated\",\n\t\"curriculum\": \"I'll teach you the very basic of self defense\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/mentor/5/course/17",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"mentor",
+								"5",
+								"course",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE COURSE",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/mentor/5/course/20",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"mentor",
+								"5",
+								"course",
+								"20"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "STUDENT",
+			"description": "",
+			"item": [
+				{
+					"name": "REGISTER - NT",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "45cb1f18-97e6-4d21-b0e2-2db9d970bed4",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"blackwidow@avengers.com\",\n\t\"password\": \"gurumu\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/register/student",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"register",
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN - TODO",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "45cb1f18-97e6-4d21-b0e2-2db9d970bed4",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"groot@avengers.com\",\n\t\"password\": \"muridmu\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/login/student",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"login",
+								"student"
+							]
+						},
+						"description": "1. Bcrypt issue kayakya."
+					},
+					"response": []
+				},
+				{
+					"name": "GET PROFILE - TODO",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/student/5/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"student",
+								"5",
+								"profile"
+							]
+						},
+						"description": "1. Resolve response when authentication not provided in header.\n2. Resolve 'BEARER' mode."
+					},
+					"response": []
+				},
+				{
+					"name": "EDIT PROFILE - TODO",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"Groot\",\n    \"phoneNumber\": \"081234567\",\n    \"dateOfBirth\": \"1985-12-07\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/student/5/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"student",
+								"5",
+								"profile"
+							]
+						},
+						"description": "1. Resolve response when authentication not provided in header.\n2. Resolve 'BEARER' mode."
+					},
+					"response": []
+				},
+				{
+					"name": "MAKE PURCHASE - NOT WORKING",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/student/5/purchase",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"student",
+								"5",
+								"purchase"
+							]
+						},
+						"description": "1. Resolve response when authentication not provided in header.\n2. Resolve 'BEARER' mode."
+					},
+					"response": []
+				},
+				{
+					"name": "GET PURCHASES - NOT WORKING",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/student/5/purchase",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"student",
+								"5",
+								"purchase"
+							]
+						},
+						"description": "1. Resolve response when authentication not provided in header.\n2. Resolve 'BEARER' mode."
+					},
+					"response": []
+				},
+				{
+					"name": "MAKE BOOKMARKS - NOT WORKING",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/student/5/bookmark",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"student",
+								"5",
+								"bookmark"
+							]
+						},
+						"description": "1. Resolve response when authentication not provided in header.\n2. Resolve 'BEARER' mode."
+					},
+					"response": []
+				},
+				{
+					"name": "GET BOOKMARKS - NOT WORKING",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/student/5/bookmark",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"student",
+								"5",
+								"bookmark"
+							]
+						},
+						"description": "1. Resolve response when authentication not provided in header.\n2. Resolve 'BEARER' mode."
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE BOOKMARKS - NOT WORKING",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN_MENTOR}}",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/student/5/bookmark/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"student",
+								"5",
+								"bookmark",
+								"1"
+							]
+						},
+						"description": "1. Resolve response when authentication not provided in header.\n2. Resolve 'BEARER' mode."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
