@@ -1,11 +1,11 @@
 <template>
   <div>
-    <v-parallax src="https://teachforall.org/sites/default/files/TFB1.jpg">
+    <v-parallax src="https://msenmediastorage.blob.core.windows.net/uploads/4af0d9e1-fabe-4175-a215-6a42d3e02373.jpg">
       <v-layout column align-center justify-center class="trans">
-        <img src="@/assets/everlearn2.png" alt="everlearn" height="100px">
+        <img src="@/assets/everlearn-bluewhite.png" alt="everlearn" height="100px">
         <h1 class="white--text">INSPIRE THE WORLD AROUND YOU</h1>
         <!-- <h4 class="grey--text">ENLIGHT THE UNIVERSE!</h4> -->
-        <v-btn color="info">BE A TEACHER</v-btn>
+        <v-btn color="info">BECOME A MENTOR</v-btn>
       </v-layout>
     </v-parallax>
     
@@ -14,11 +14,12 @@
         <h1>EXPLORE ALL AVAILABLE COURSE</h1>
       </v-layout>
       <v-layout row wrap>
-        <v-flex 
+        <v-flex
+          flat 
           pa-4
           md4 xs12 
           :key="course.id"
-          v-for="course in featuredCourse">
+          v-for="course in courses">
           <v-card color="grey lighten-1">
             <v-card-media
               height="300px"
@@ -44,15 +45,14 @@
                 bottom
                 right
                 fab>
-                <v-icon>add_shopping_cart</v-icon>
+                <v-icon>add</v-icon>
               </v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
       </v-layout>
     </v-container>
-    
-    <v-carousel hide-controls>
+    <!-- <v-carousel hide-controls>
       <v-carousel-item 
         v-for="content in contents"
         :src="content.imageUrl"
@@ -60,7 +60,7 @@
         style="cursor: pointer"
         @click="onLoadContent(course.id)">
       </v-carousel-item>
-    </v-carousel>
+    </v-carousel> -->
   </div>
 </template>
 
@@ -80,7 +80,7 @@ export default {
   },
   computed: {
     featuredCourse: function () {
-      return this.courses.courses.slice(0,6)
+      return this.courses.courses.slice(0, 6)
     }
   },
   mounted () {
@@ -95,7 +95,7 @@ export default {
     },
     async getCourses () {
       const response = await CourseService.getAllCourses()
-      this.courses = response.data
+      this.courses = response.data.courses.slice(0, 6)
     }
   }
 }
@@ -104,8 +104,5 @@ export default {
 <style scoped>
   .headline {
     font-weight: bold;
-  }
-  .trans {
-    background: rgba(0, 0, 0, 0.6);
   }
 </style>

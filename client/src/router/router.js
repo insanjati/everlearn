@@ -9,18 +9,14 @@ import Courses from '@/components/Course/Courses'
 import AddCourse from '@/components/Course/AddCourse'
 import MentorProfile from '@/components/Mentor/Profile'
 import StudentProfile from '@/components/Student/Profile'
+import AdminLogin from '@/components/Admin/Login'
 import MentorsManage from '@/components/Admin/Mentors'
-import Posts from '@/components/Posts'
+import StudentsManage from '@/components/Admin/Students'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/posts',
-      name: 'Posts',
-      component: Posts
-    },
     {
       path: '/',
       name: 'Home',
@@ -44,7 +40,6 @@ export default new Router({
     {
       path: '/courses/:id',
       name: 'Course',
-      props: true,
       component: Course
     },
     {
@@ -63,9 +58,19 @@ export default new Router({
       component: StudentProfile
     },
     {
-      path: '/admin/mentors',
+      path: '/webmaster',
+      name: 'AdminLogin',
+      component: AdminLogin
+    },
+    {
+      path: '/webmaster/mentors',
       name: 'MentorsManage',
       component: MentorsManage
+    },
+    {
+      path: '/webmaster/students',
+      name: 'StudentsManage',
+      component: StudentsManage
     }
   ],
   mode: 'history'

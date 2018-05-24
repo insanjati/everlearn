@@ -1,14 +1,7 @@
 <template>
   <div class="posts">
     <h1>Posts</h1>
-    This file will list all the courses.
-    <div v-for="course in courses.courses">
-    <!-- <div> -->
-      <p>
-        <span><b>{{ course.courseName }}</b></span><br />
-        <span>{{ course.description }}</span>
-      </p>
-    </div>
+    This just percobaan on axios.
   </div>
 </template>
 

@@ -3,8 +3,10 @@ This application will connect you to all the best courses in the town.
 
 ## Development Tools
 - [Git](https://git-scm.com/) for versioning system.
-- [Node.js](https://nodejs.org/en/) to run the application.
-- [Express.js](https://expressjs.com/) to build the API.
+- [Node.js](https://nodejs.org/en/) as runtime environtment.
+- [Express.js](https://expressjs.com/) as backend framework to build RESTful API.
+- [MySQL](https://www.mysql.com/) as the database.
+- [Vue.js](https://vuejs.org) as frontend framework.
 - [Postman](https://www.getpostman.com/) to test the API.
 
 ## Author
@@ -16,7 +18,11 @@ This application will connect you to all the best courses in the town.
 ```sh
 $ npm i
 ```
-3. Run the file via terminal:
+3. Go to server directory, run the server by this command:
+```sh
+$ npm start
+```
+4. Go to client directory, run the client by this command:
 ```sh
 $ npm start
 ```

@@ -8,7 +8,7 @@
           tag="span" 
           style="cursor: pointer"
           src="./assets/EVERLEARN.png">
-          <img src="@/assets/everlearn2.png" alt="everlearn" height="50px">
+          <img src="@/assets/everlearn-blueblack.png" alt="everlearn" height="50px">
         </router-link>
       </v-toolbar-title>
       <v-layout row wrap>
@@ -49,14 +49,23 @@
           <v-icon left>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
-        <!-- <v-btn depressed class="blue darken-3">Log In</v-btn>
-        <v-btn depressed class="blue darken-4">Register</v-btn> -->
       </v-toolbar-items>
     </v-toolbar>
     <main>
       <router-view></router-view>
 
     </main>
+    <v-footer height="auto" class="indigo">
+      <v-layout row wrap justify-center my-5>
+        <img src="@/assets/everlearn-bluewhite.png" alt="everlearn" height="50px">
+        <v-flex mt-3 xs12 text-xs-center white--text>
+          Released under the <strong>MIT License</strong>
+        </v-flex>
+        <v-flex xs12 text-xs-center white--text>
+          Copyright © 2018 — <strong>EVERLEARN</strong>
+        </v-flex>
+      </v-layout>
+    </v-footer>
   </v-app>
 </template>
 
