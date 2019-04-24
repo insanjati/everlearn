@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "insanjati",
+    "username": "",
     "password": "",
     "database": "everlearn",
     "host": "127.0.0.1",
@@ -8,15 +8,15 @@
     "operatorsAliases": false
   },
   "test": {
-    "username": "root",
-    "password": null,
+    "username": "",
+    "password": "",
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
+    "username": "",
+    "password": "",
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql"
